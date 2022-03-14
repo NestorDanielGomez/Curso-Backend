@@ -27,7 +27,7 @@ class Usuario {
   }
   getBookNames() {
     const solonombre = [];
-    this.libros.map(libro, () => {
+    this.libros.map((libro) => {
       solonombre.push(libro.nombre);
     });
     return console.log(solonombre);
