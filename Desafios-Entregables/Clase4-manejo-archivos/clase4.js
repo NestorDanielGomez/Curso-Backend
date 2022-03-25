@@ -1,5 +1,6 @@
-const { Console } = require("console");
 const fs = require("fs");
+
+const MiBaseDeDatos = [];
 
 class Contenedor {
   title;
@@ -13,34 +14,28 @@ class Contenedor {
   }
 
   save(producto) {
-    console.log(producto);
-    const dataDelArchivo = fs.readFileSync(`./basededatos.txt`, `utf-8`);
-    console.log(dataDelArchivo);
-    const misDatos = JSON.parse(dataDelArchivo);
+    try {
+      const leoArchivo = fs.readFileSync(`./basededatos.txt`, `utf-8`);
+      console.log(leoArchivo);
+      // console.log(leoArchivo.length);
 
-    const id = misDatos.length + 1;
-    console.log(misDatos, id);
-    const producto_a_ingresar = {
-      id,
-      title: producto.title,
-      price: producto.price,
-      thumbnail: producto.thumbnail,
-    };
-    console.log(producto_a_ingresar);
+      const idProducto = leoArchivo.length + 1;
 
-    const datos1 = misDatos.push(producto_a_ingresar);
-    console.log(datos1);
-    const misDatosstring = JSON.stringify(datos1);
-    fs.writeFileSync(`./basededatos.txt`, datos1);
+      const productoAIngresar = {
+        idProducto,
+        title: producto.title,
+        price: producto.price,
+        thumbnail: producto.thumbnail,
+      };
+      const dato = leoArchivo.push(productoAIngresar);
 
-    console.log(misDatosstring, id);
-
-    // return id;
+      fs.writeFileSync(`./basededatos.txt`, dato);
+    } catch (error) {
+      console.log("error", error.message);
+    }
   }
 }
 
-const dataproducto1 = {};
+const pr1 = new Contenedor();
 
-producto1 = new Contenedor();
-
-producto1.save({ title: "loro", price: "perro", thumbnail: "gato" });
+pr1.save({ title: "nombre", price: 123, thumbnail: "imagen" });
