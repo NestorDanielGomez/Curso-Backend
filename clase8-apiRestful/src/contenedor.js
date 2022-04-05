@@ -6,6 +6,7 @@ class Contenedor {
   }
 
   async save(objeto) {
+    console.log(objeto);
     const data = await fs.promises.readFile(this.archivo, `utf-8`);
     const productos = JSON.parse(data);
 
@@ -23,19 +24,18 @@ class Contenedor {
       JSON.stringify(productos, null, "\t")
     );
   }
+
   async getById(idProducto) {
+    console.log(idProducto);
     const data = await fs.promises.readFile(this.archivo, `utf-8`);
     const productos = JSON.parse(data);
-
     console.log(productos);
-
     const indice = productos.findIndex((producto) => {
       if (producto.id === idProducto) return true;
       else return false;
     });
 
     if (indice === -1) return null;
-
     return productos[indice];
   }
 
