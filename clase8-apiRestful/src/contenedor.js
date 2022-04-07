@@ -26,16 +26,13 @@ class Contenedor {
   }
 
   async getById(idProducto) {
-    console.log(idProducto);
     const data = await fs.promises.readFile(this.archivo, `utf-8`);
     const productos = JSON.parse(data);
-    console.log(productos);
+
     const indice = productos.findIndex((producto) => {
-      if (producto.id === idProducto) return true;
-      else return false;
+      return (producto.id = idProducto);
     });
 
-    if (indice === -1) return null;
     return productos[indice];
   }
 
@@ -70,13 +67,6 @@ class Contenedor {
 }
 
 const micontenedor = new Contenedor(`src/basedatos.json`);
-
-// const producto1 = {
-//   title: "nuevo producto",
-//   price: 789,
-// };
-
-// const prod1 = new Contenedor();
 
 module.exports = {
   Contenedor: micontenedor,

@@ -1,5 +1,6 @@
 const express = require("express");
 const mainRouter = require("./routes/index");
+const path = require("path");
 
 const app = express();
 const puerto = 8080;
@@ -13,5 +14,8 @@ server.on("error", (err) => {
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+const publicPath = path.resolve(__dirname, "../public");
+app.use(express.static(publicPath));
 
 app.use("/api", mainRouter);

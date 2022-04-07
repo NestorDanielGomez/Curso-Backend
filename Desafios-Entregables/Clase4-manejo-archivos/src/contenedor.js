@@ -27,13 +27,12 @@ class Contenedor {
     const data = await fs.promises.readFile(this.archivo, `utf-8`);
     const productos = JSON.parse(data);
 
-    console.log(productos);
-
     const indice = productos.findIndex((producto) => {
       if (producto.id === idProducto) return true;
       else return false;
     });
-
+    console.log(producto.id);
+    console.log(idProducto);
     if (indice === -1) return null;
 
     return productos[indice];
