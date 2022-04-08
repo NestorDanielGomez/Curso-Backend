@@ -1,6 +1,6 @@
 const boton = document.getElementById("boton");
-const nombre = document.getElementById("title");
-const precio = document.getElementById("price");
+const title = document.getElementById("title");
+const price = document.getElementById("price");
 
 async function postData(url = "", data = {}) {
   const response = await fetch(url, {
@@ -24,9 +24,11 @@ boton.addEventListener("click", async () => {
       price: price.value,
     };
 
-    boton.reset();
+    title.value = price.value = "";
+
     const url = "http://localhost:8080/api/productos";
-    response = await postData(url, data);
+
+    response = await postData(url, data).then((response) => response.json);
 
     console.log(response);
   } catch (err) {

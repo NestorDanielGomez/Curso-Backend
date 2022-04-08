@@ -1,62 +1,32 @@
 [
-	{
-		"id": "4",
-		"title": "product1",
-		"price": 100
-	},
-	{
-		"id": "5",
-		"title": "product1",
-		"price": 200
-	},
-	{
-		"id": "6",
-		"title": "televisor",
-		"precio": 5000
-	},
-	{
-		"id": "7",
-		"title": "product1",
-		"price": 600
-	},
-	{
-		"id": "8",
-		"title": "product1",
-		"price": 600
-	},
-	{
-		"id": "9",
-		"title": "product1",
-		"price": 600
-	},
-	{
-		"id": "10",
-		"title": "product1",
-		"price": 600
-	},
-	{
-		"id": "11",
-		"title": "product1",
-		"price": 600
-	},
-	{
-		"id": "111",
-		"title": "celular"
-	},
-	{
-		"id": "1111",
-		"title": "celular"
-	},
-	{
-		"id": "11111",
-		"title": "celular"
-	},
-	{
-		"id": "111111",
-		"title": "celular"
-	},
-	{
-		"id": "1111111",
-		"title": "celular"
-	}
+  {
+    "id": "5",
+    "title": "product1",
+    "price": 200
+  },
+  {
+    "id": "6",
+    "title": "televisor",
+    "precio": 5000
+  },
+  {
+    "id": "7",
+    "title": "product1",
+    "price": 600
+  },
+  {
+    "id": "8",
+    "title": "product1",
+    "price": 600
+  },
+  {
+    "id": "9",
+    "title": "product1",
+    "price": 600
+  },
+  {
+    "id": "10",
+    "title": "product1",
+    "price": 600
+  }
 ]

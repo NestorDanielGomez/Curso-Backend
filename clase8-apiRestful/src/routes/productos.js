@@ -51,17 +51,17 @@ router.put("/:id", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  const body = req.body;
-  const { title, precio } = req.body;
+  const { title, price } = req.body;
+  console.log(title, price);
 
-  if (!title || !precio)
+  if (!title || !price)
     return res.status(400).json({
       msg: "Falta Nombre o Precio en el Body",
     });
 
   const nuevoProducto = {
     title,
-    precio,
+    price,
   };
 
   const resultado = await Contenedor.save(nuevoProducto);
