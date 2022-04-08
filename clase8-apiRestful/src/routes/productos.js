@@ -1,4 +1,5 @@
 const express = require("express");
+
 const { Contenedor } = require("../contenedor");
 
 const router = express.Router();
@@ -10,43 +11,62 @@ router.get("/", async (request, response) => {
   });
 });
 
-router.get("/:id", async (request, response) => {
-  const resultado = await Contenedor.getById(request.params.id);
-  const resultadonuevo = await Contenedor.save(resultado);
-  response.json({
-    data: resultadonuevo,
+router.get("/:id", async (req, res) => {
+  const producto = await Contenedor.getById(req.params.id);
+  if (!producto)
+    return res.status(404).json({
+      msj: "producto no encontrado",
+    });
+
+  res.json({
+    data: producto,
   });
 });
 
-router.put("/:id", async (req, resp) => {
-  let produto_a_modificar = await Contenedor.getById(req.params.id);
+router.put("/:id", async (req, res) => {
+  const { title, precio } = req.body;
+  const { id } = req.params; //const id = req.params.id
+  const producto = await Contenedor.getById(id);
 
-  const body = req.body;
-  const nuevosvalores = {
-    title: body.title,
-    price: body.price,
+  if (!producto)
+    return res.status(404).json({
+      msg: "Producto no encontrado",
+    });
+
+  if (!title || !precio)
+    return res.status(400).json({
+      msg: "Falta Nombre o Precio en el Body",
+    });
+
+  const nuevoProducto = {
+    title,
+    precio,
   };
 
-  produto_a_modificar = {
-    title: nuevosvalores.title,
-    price: nuevosvalores.price,
-  };
+  const result = await Contenedor.Update(id, nuevoProducto);
 
-  const resultado = await Contenedor.save(produto_a_modificar);
-  resp.json({
-    data: resultado,
+  res.json({
+    data: result,
   });
 });
 
 router.post("/", async (req, res) => {
   const body = req.body;
+  const { title, precio } = req.body;
+
+  if (!title || !precio)
+    return res.status(400).json({
+      msg: "Falta Nombre o Precio en el Body",
+    });
+
   const nuevoProducto = {
-    title: body.title,
-    price: body.price,
+    title,
+    precio,
   };
 
   const resultado = await Contenedor.save(nuevoProducto);
   res.json({
+    msg: "Post de Productos",
     data: resultado,
   });
 });
@@ -54,7 +74,7 @@ router.post("/", async (req, res) => {
 router.delete("/:id", async (request, response) => {
   const resultado = await Contenedor.deleteById(request.params.id);
   response.json({
-    data: resultado,
+    msg: "producto eliminado",
   });
 });
 
