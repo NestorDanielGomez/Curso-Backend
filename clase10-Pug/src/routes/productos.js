@@ -40,7 +40,8 @@ router.put("/:id", async (req, res) => {
 
   const nuevoProducto = {
     title,
-    precio,
+    price,
+    img,
   };
 
   const result = await Contenedor.Update(id, nuevoProducto);
@@ -51,7 +52,7 @@ router.put("/:id", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  const { title, price } = req.body;
+  const { title, price, img } = req.body;
   console.log(title, price);
 
   if (!title || !price)
@@ -62,6 +63,7 @@ router.post("/", async (req, res) => {
   const nuevoProducto = {
     title,
     price,
+    img,
   };
 
   const resultado = await Contenedor.save(nuevoProducto);

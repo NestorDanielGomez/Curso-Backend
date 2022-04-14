@@ -1,7 +1,7 @@
 const express = require("express");
 const mainRouter = require("./routes/index");
 const path = require("path");
-
+const { Contenedor } = require("./contenedor");
 const app = express();
 const puerto = 8080;
 
@@ -16,8 +16,16 @@ app.set("view engine", "pug");
 const viewsPath = path.resolve(__dirname, "../views");
 app.set("views", viewsPath);
 
-app.get("/hello", (req, res) => {
-  res.render("hello", { mensaje: "BIENVENIDOS HUMANOS" }); // Se muestra la plantilla hello.pug
+app.get("/", async (req, res) => {
+  const data = await Contenedor.getAll();
+  console.log(data);
+  res.render("principal", { data });
+});
+
+app.get("/productos", async (req, res) => {
+  const data = await Contenedor.getAll();
+  console.log(data);
+  res.render("listado", { data });
 });
 
 app.use(express.json());
@@ -26,4 +34,4 @@ app.use(express.urlencoded({ extended: true }));
 const publicPath = path.resolve(__dirname, "../public");
 app.use(express.static(publicPath));
 
-app.use("/api", mainRouter);
+app.use("/productos", mainRouter);

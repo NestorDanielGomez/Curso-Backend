@@ -1,18 +1,19 @@
-table(style='width:100%', border='1')
-  tr
-    th Id
-    th Producto
-    th Precio
+
+div(class="container")
+  h1= "Listado de productos"
+ 
+  table(class="table ")
+    tr
+      th Id
+      th Producto
+      th Precio
+      each val in data  
+        tr
+          td= val.id 
+          td= val.title
+          td= val.price
+          td
+            img(src= val.img alt='imagen' style='width:100px; height:100px;')
+  a(href='/' class="btn btn-success")= "Ir a cargar un producto"      
+
     
-  tr
-    td 001
-    td Adam
-    td 25
-  tr
-    td 002
-    td rahul
-    td 27
-  tr
-    td 003
-    td john
-    td 80

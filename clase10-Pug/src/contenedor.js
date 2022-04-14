@@ -1,4 +1,5 @@
 const fs = require("fs");
+const { v4: uuidv4 } = require("uuid");
 
 class Contenedor {
   constructor(nombreArchivo) {
@@ -18,12 +19,12 @@ class Contenedor {
     const productos = await this.getData();
 
     let id;
-    if (productos.length === 0) id = 1;
-    else id = productos[productos.length - 1].id + 1;
+
     const productonuevo = {
-      id: id,
+      id: uuidv4(),
       title: objeto.title,
       price: objeto.price,
+      img: objeto.img,
     };
     productos.push(productonuevo);
     await this.saveData(productos);
