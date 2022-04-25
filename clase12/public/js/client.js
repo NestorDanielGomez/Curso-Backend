@@ -1,9 +1,8 @@
-const boton = document.getElementById("boton");
+const boton = document.getElementById("botonLoad");
 const table = document.getElementById("myTable");
 const title = document.getElementById("title");
 const price = document.getElementById("price");
 const imagen = document.getElementById("urlimg");
-console.log("cliente.js");
 
 async function postData(url = "", data = {}) {
   const response = await fetch(url, {
@@ -30,8 +29,8 @@ socket.on("producto", (unProducto) => {
 
 const attachRow = (unProducto) => {
   const fila = document.createElement("tr");
-  fila.innerHTML = `<td>${unProducto.id}</td><td>${unProducto.title}</td> <td>${unProducto.price}</td><td>${unProducto.img}</td>`;
-
+  fila.innerHTML = `<td>${unProducto.id}</td><td>${unProducto.title}</td> <td>${unProducto.price}</td>`;
+  console.log(fila);
   table.appendChild(fila);
 };
 
