@@ -34,17 +34,6 @@ chatForm.addEventListener("submit", (e) => {
   msg.value = "";
 });
 
-//Output Message to DOM
-/**
- * We are going to create the following html output for each message
- *      <div class="message">
- *         <p class="meta">Brad <span>9:12pm</span></p>
- *         <p class="text">
- *           Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi,
- *           repudiandae.
- *         </p>
- *       </div>
- */
 function outputMessage(message) {
   const div = document.createElement("div");
   div.classList.add("message");

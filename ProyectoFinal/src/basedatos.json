@@ -1,44 +1,40 @@
 [
 	{
 		"id": "1",
-		"title": "product1",
-		"price": "200",
-		"img": "https://cdn3.iconfinder.com/data/icons/back-to-school-12/30/school_object_study_student-3-128.png"
+		"timestamp": "pepsi",
+		"nombre": "555",
+		"descripcion": "sdfsdfsdf",
+		"codigo": "11",
+		"foto": "https://cdn3.iconfinder.com/data/icons/back-to-school-12/30/school_object_study_student-3-128.png",
+		"precio": "11",
+		"stock": "11"
 	},
 	{
 		"id": "2",
-		"title": "televisor",
-		"price": "200",
-		"img": "https://cdn3.iconfinder.com/data/icons/back-to-school-12/30/school_object_study_student-14-128.png"
+		"nombre": "pepito",
+		"descripcion": "sdfsdfsdf",
+		"codigo": "11",
+		"foto": "https://cdn3.iconfinder.com/data/icons/back-to-school-12/30/school_object_study_student-3-128.png",
+		"precio": "6666"
 	},
 	{
 		"id": "3",
-		"title": "product1",
-		"price": "200",
-		"img": "https://cdn3.iconfinder.com/data/icons/back-to-school-12/30/school_object_study_student-17-128.png"
+		"timestamp": "pepsi",
+		"nombre": "555",
+		"descripcion": "sdfsdfsdf",
+		"codigo": "11",
+		"foto": "https://cdn3.iconfinder.com/data/icons/back-to-school-12/30/school_object_study_student-3-128.png",
+		"precio": "11",
+		"stock": "11"
 	},
 	{
-		"id": "4",
-		"title": "product1",
-		"price": "200",
-		"img": "https://cdn3.iconfinder.com/data/icons/back-to-school-12/30/school_object_study_student-9-128.png"
-	},
-	{
-		"id": "912d0a1f-54e7-4b73-9305-2b9efb1c8054",
-		"title": "pepsi",
-		"price": "555",
-		"img": "https://cdn3.iconfinder.com/data/icons/back-to-school-12/30/school_object_study_student-3-128.png"
-	},
-	{
-		"id": "bad02afc-d6d7-4d9f-bbcf-96ebb59f3b2c",
-		"title": "1111",
-		"price": "1111",
-		"img": "https://cdn3.iconfinder.com/data/icons/back-to-school-12/30/school_object_study_student-11-128.png"
-	},
-	{
-		"id": "9ea44bae-2b84-4f1a-891d-28f4dfc0c9d5",
-		"title": "personaje",
-		"price": "3333",
-		"img": "https://cdn2.iconfinder.com/data/icons/avatars-99/62/avatar-374-456326-128.png"
+		"id": "ec616963-89d9-4166-a2e9-c244396075ea",
+		"timestamp": "2022-04-25T20:32:01.260Z",
+		"nombre": "pepito",
+		"descripcion": "sdfsdfsdf",
+		"codigo": "11",
+		"foto": "https://cdn3.iconfinder.com/data/icons/back-to-school-12/30/school_object_study_student-3-128.png",
+		"precio": "123",
+		"stock": "1221"
 	}
 ]

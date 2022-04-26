@@ -1,7 +1,7 @@
 const fs = require("fs");
 const { v4: uuidv4 } = require("uuid");
 
-class Contenedor {
+class Carrito {
   constructor(nombreArchivo) {
     this.archivo = nombreArchivo;
   }
@@ -19,12 +19,17 @@ class Contenedor {
     const productos = await this.getData();
 
     let id;
+    let timestamp;
 
     const productonuevo = {
       id: uuidv4(),
-      title: objeto.title,
-      price: objeto.price,
-      img: objeto.img,
+      timestamp: Date.now(),
+      nombre: objeto.nombre,
+      descripcion: objeto.descripcion,
+      codigo: objeto.codigo,
+      foto: objeto.foto,
+      precio: objeto.precio,
+      stock: objeto.stock,
     };
     productos.push(productonuevo);
     await this.saveData(productos);
@@ -37,8 +42,7 @@ class Contenedor {
       if (producto.id === idProducto) return true;
       else return false;
     });
-    console.log(idProducto);
-    console.log(indice);
+
     if (indice === -1) return null;
 
     return productos[indice];
@@ -85,8 +89,8 @@ class Contenedor {
   }
 }
 
-const micontenedor = new Contenedor(`src/basedatos.json`);
+const miCarrito = new Carrito(`src/basedatos.json`);
 
 module.exports = {
-  Contenedor: micontenedor,
+  MiCarrito: miCarrito,
 };

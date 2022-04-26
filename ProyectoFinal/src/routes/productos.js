@@ -1,18 +1,18 @@
 const express = require("express");
 
-const { Contenedor } = require("../contenedor");
+const { ProductosController } = require("../Controllers/productosController");
 
 const router = express.Router();
 
 router.get("/", async (request, response) => {
-  const resultado = await Contenedor.getAll();
+  const resultado = await ProductosController.getAll();
   response.json({
     data: resultado,
   });
 });
 
 router.get("/:id", async (req, res) => {
-  const producto = await Contenedor.getById(req.params.id);
+  const producto = await ProductosController.getById(req.params.id);
   if (!producto)
     return res.status(404).json({
       msj: "producto no encontrado",
@@ -24,27 +24,30 @@ router.get("/:id", async (req, res) => {
 });
 
 router.put("/:id", async (req, res) => {
-  const { title, precio } = req.body;
+  const { nombre, descripcion, codigo, foto, precio, stock } = req.body;
   const { id } = req.params; //const id = req.params.id
-  const producto = await Contenedor.getById(id);
+  const producto = await ProductosController.getById(id);
 
   if (!producto)
     return res.status(404).json({
       msg: "Producto no encontrado",
     });
 
-  if (!title || !precio)
+  if (!nombre || !precio)
     return res.status(400).json({
       msg: "Falta Nombre o Precio en el Body",
     });
 
   const nuevoProducto = {
-    title,
-    price,
-    img,
+    nombre,
+    descripcion,
+    codigo,
+    foto,
+    precio,
+    stock,
   };
 
-  const result = await Contenedor.Update(id, nuevoProducto);
+  const result = await ProductosController.Update(id, nuevoProducto);
 
   res.json({
     data: result,
@@ -52,21 +55,23 @@ router.put("/:id", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  const { title, price, img } = req.body;
-  console.log(title, price);
+  const { nombre, descripcion, codigo, foto, precio, stock } = req.body;
 
-  if (!title || !price)
+  if (!nombre || !precio)
     return res.status(400).json({
       msg: "Falta Nombre o Precio en el Body",
     });
 
   const nuevoProducto = {
-    title,
-    price,
-    img,
+    nombre,
+    descripcion,
+    codigo,
+    foto,
+    precio,
+    stock,
   };
 
-  const resultado = await Contenedor.save(nuevoProducto);
+  const resultado = await ProductosController.save(nuevoProducto);
   res.json({
     msg: "Post de Productos",
     data: resultado,
@@ -74,7 +79,7 @@ router.post("/", async (req, res) => {
 });
 
 router.delete("/:id", async (request, response) => {
-  const resultado = await Contenedor.deleteById(request.params.id);
+  const resultado = await ProductosController.deleteById(request.params.id);
   response.json({
     msg: "producto eliminado",
   });
