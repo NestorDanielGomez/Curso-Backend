@@ -53,14 +53,80 @@ class Cart {
     await this.saveData(NEW_ALLCARTS);
   }
 
+  async filterCart(idcart) {
+    // Traigo todos los carritos
+    const FULLCART = await this.getAll();
+
+    // Filtro al carrito especifico;
+    const IDCART = FULLCART.findIndex((CART) => {
+      if (CART.id === idcart) return true;
+      else return false;
+    });
+    if (IDCART === -1) return null;
+    const FILTERCART = FULLCART[IDCART];
+    return FILTERCART;
+  }
+
   async deleteProductOfCart(idcart, idproduct) {
-    const FULLCART = await this.getById(idcart);
-    const productosdecarrito = FULLCART.usercart;
-    const nuevoArray = productosdecarrito.filter(
-      (unProducto) => unProducto.id != idproduct
+    // Traigo todos los carritos
+    const FULLCART = await this.getAll();
+
+    // Filtro al carrito especifico;
+    const IDCART = FULLCART.findIndex((CART) => {
+      if (CART.id === idcart) return true;
+      else return false;
+    });
+    if (IDCART === -1) return null;
+    const FILTERCART = FULLCART[IDCART];
+
+    // Borro el producto del carrito;
+    const FILTERPRODUCT = FILTERCART.usercart.filter(
+      (product) => product.id != idproduct
     );
 
-    console.log(nuevoArray);
+    // Reemplazo el array del carrito especifico por el nuevo carrito
+    const newCart = [];
+    FILTERPRODUCT.forEach((element) => {
+      newCart.push(element);
+    });
+
+    //Reemplazo el carrito especifico en el array de carritos
+    FILTERCART.usercart = [];
+    newCart.forEach((element) => {
+      FILTERCART.usercart.push(element);
+    });
+
+    //Escribo el archivo con el array de carritos.
+    await this.saveData(FULLCART);
+    return FILTERCART;
+  }
+
+  async addProductToCart(idcart, idproduct) {
+    // Traigo todos los carritos
+    const FULLCART = await this.getAll();
+    // Filtro al carrito especifico;
+    const IDCART = FULLCART.findIndex((CART) => {
+      if (CART.id === idcart) return true;
+      else return false;
+    });
+    if (IDCART === -1) return null;
+    const FILTERCART = FULLCART[IDCART];
+    // Traigo el producto para agregar al carro
+    const ProductToAdd = await ProductosController.getById(idproduct);
+    console.log("id producto a agregar", ProductToAdd);
+    // Sumo el producto al carro.
+    const cart = FILTERCART.usercart;
+    cart.push(ProductToAdd);
+    //Reemplazo el carrito especifico en el array de carritos
+
+    FILTERCART.usercart = [];
+
+    cart.forEach((element) => {
+      FILTERCART.usercart.push(element);
+    });
+    //Guardo la DB
+    await this.saveData(FULLCART);
+    return FILTERCART;
   }
 }
 

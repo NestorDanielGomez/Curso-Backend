@@ -1,40 +1,38 @@
 [
-	{
-		"id": "1",
-		"timestamp": "pepsi",
-		"nombre": "555",
-		"descripcion": "sdfsdfsdf",
-		"codigo": "11",
-		"foto": "https://cdn3.iconfinder.com/data/icons/back-to-school-12/30/school_object_study_student-3-128.png",
-		"precio": "11",
-		"stock": "11"
-	},
-	{
-		"id": "2",
-		"nombre": "pepito",
-		"descripcion": "sdfsdfsdf",
-		"codigo": "11",
-		"foto": "https://cdn3.iconfinder.com/data/icons/back-to-school-12/30/school_object_study_student-3-128.png",
-		"precio": "6666"
-	},
-	{
-		"id": "3",
-		"timestamp": "pepsi",
-		"nombre": "555",
-		"descripcion": "sdfsdfsdf",
-		"codigo": "11",
-		"foto": "https://cdn3.iconfinder.com/data/icons/back-to-school-12/30/school_object_study_student-3-128.png",
-		"precio": "11",
-		"stock": "11"
-	},
-	{
-		"id": "ec616963-89d9-4166-a2e9-c244396075ea",
-		"timestamp": "2022-04-25T20:32:01.260Z",
-		"nombre": "pepito",
-		"descripcion": "sdfsdfsdf",
-		"codigo": "11",
-		"foto": "https://cdn3.iconfinder.com/data/icons/back-to-school-12/30/school_object_study_student-3-128.png",
-		"precio": "123",
-		"stock": "1221"
-	}
+  {
+    "id": "1",
+    "nombre": "Lavarropa",
+    "descripcion": "sdfsdfsdf",
+    "codigo": "11",
+    "foto": "https://cdn3.iconfinder.com/data/icons/back-to-school-12/30/school_object_study_student-3-128.png",
+    "precio": "6666",
+    "stock": "25"
+  },
+  {
+    "id": "2",
+    "nombre": "Secadora",
+    "descripcion": "sdfsdfsdf",
+    "codigo": "12",
+    "foto": "https://cdn3.iconfinder.com/data/icons/back-to-school-12/30/school_object_study_student-3-128.png",
+    "precio": "6666",
+    "stock": "25"
+  },
+  {
+    "id": "3",
+    "nombre": "Heladera",
+    "descripcion": "sdfsdfsdf",
+    "codigo": "13",
+    "foto": "https://cdn3.iconfinder.com/data/icons/back-to-school-12/30/school_object_study_student-3-128.png",
+    "precio": "6666",
+    "stock": "25"
+  },
+  {
+    "id": "4",
+    "nombre": "Ventilador",
+    "descripcion": "sdfsdfsdf",
+    "codigo": "14",
+    "foto": "https://cdn3.iconfinder.com/data/icons/back-to-school-12/30/school_object_study_student-3-128.png",
+    "precio": "6666",
+    "stock": "25"
+  }
 ]

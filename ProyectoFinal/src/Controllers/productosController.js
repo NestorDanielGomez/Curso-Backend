@@ -18,9 +18,6 @@ class Contenedor {
   async save(objeto) {
     const productos = await this.getData();
 
-    let id;
-    let timestamp;
-
     const productonuevo = {
       id: uuidv4(),
       timestamp: Date.now(),

@@ -1,12 +1,13 @@
 const express = require("express");
-
 const { ProductosController } = require("../Controllers/productosController");
+const { validarAdmin } = require("../middlewares/permisos");
 
 const router = express.Router();
 
 router.get("/", async (request, response) => {
   const resultado = await ProductosController.getAll();
   response.json({
+    titulo: "Todos los productos",
     data: resultado,
   });
 });
@@ -19,11 +20,12 @@ router.get("/:id", async (req, res) => {
     });
 
   res.json({
+    titulo: `Producto con el id: ${req.params.id}`,
     data: producto,
   });
 });
 
-router.put("/:id", async (req, res) => {
+router.put("/:id", validarAdmin, async (req, res) => {
   const { nombre, descripcion, codigo, foto, precio, stock } = req.body;
   const { id } = req.params; //const id = req.params.id
   const producto = await ProductosController.getById(id);
@@ -33,9 +35,9 @@ router.put("/:id", async (req, res) => {
       msg: "Producto no encontrado",
     });
 
-  if (!nombre || !precio)
+  if (!nombre || !descripcion || !codigo || !foto || !precio || !stock)
     return res.status(400).json({
-      msg: "Falta Nombre o Precio en el Body",
+      msg: "Los campos :nombre, descripcion,codigo,foto, precio,stock son todos obligatorios",
     });
 
   const nuevoProducto = {
@@ -50,16 +52,17 @@ router.put("/:id", async (req, res) => {
   const result = await ProductosController.Update(id, nuevoProducto);
 
   res.json({
+    titulo: "El producto actualizado es:",
     data: result,
   });
 });
 
-router.post("/", async (req, res) => {
+router.post("/", validarAdmin, async (req, res) => {
   const { nombre, descripcion, codigo, foto, precio, stock } = req.body;
 
-  if (!nombre || !precio)
+  if (!nombre || !descripcion || !codigo || !foto || !precio || !stock)
     return res.status(400).json({
-      msg: "Falta Nombre o Precio en el Body",
+      msg: "Los campos :nombre, descripcion,codigo,foto, precio,stock son todos obligatorios",
     });
 
   const nuevoProducto = {
@@ -73,15 +76,15 @@ router.post("/", async (req, res) => {
 
   const resultado = await ProductosController.save(nuevoProducto);
   res.json({
-    msg: "Post de Productos",
+    msg: "Nuevo producto Agregado:",
     data: resultado,
   });
 });
 
-router.delete("/:id", async (request, response) => {
+router.delete("/:id", validarAdmin, async (request, response) => {
   const resultado = await ProductosController.deleteById(request.params.id);
   response.json({
-    msg: "producto eliminado",
+    msg: ` El producto con el ${request.params.id} ha sido eliminado`,
   });
 });
 
