@@ -40,10 +40,16 @@ class RelationalDatabase {
 }
 
 const productsTableName = "products";
+const messagesTableName = "messages";
 
 export const ProductsModel = new RelationalDatabase(
   dbConfig,
   productsTableName
+);
+
+export const MessagesModel = new RelationalDatabase(
+  dbConfig,
+  messagesTableName
 );
 
 // export const MessagesModel = new RelationalDatabase(sqliteConfig, "messages");
@@ -52,7 +58,6 @@ const db = knex(dbConfig);
 
 const initProductsTable = async () => {
   await db.schema.createTable(productsTableName, async (productsTable) => {
-    console.log("done");
     productsTable.increments();
     productsTable.string("name").notNullable();
     productsTable.integer("stock").notNullable();
@@ -78,11 +83,44 @@ const initProductsTable = async () => {
   });
 };
 
+const initMessagesTable = async () => {
+  await db.schema.createTable(messagesTableName, async (messagesTable) => {
+    messagesTable.increments();
+    messagesTable.string("author").notNullable();
+    messagesTable.string("text").notNullable();
+    messagesTable.timestamps(true, true);
+
+    const initMessages = [
+      {
+        author: "bot1",
+        text: "el bot saluda ",
+      },
+      {
+        author: "bot2",
+        text: "el bot saluda again",
+      },
+    ];
+    const createMessages = initMessages.map((aMessage) =>
+      db(messagesTableName).insert(aMessage)
+    );
+    await Promise.all(createMessages);
+  });
+};
+
+export const addMessageTotable = async (message: {}) => {
+  await db(messagesTableName).insert(message);
+};
+
 export const initDb = async () => {
-  0;
   const productsTableExists = await db.schema.hasTable(productsTableName);
+  const messagesTableExists = await db.schema.hasTable(messagesTableName);
+
   if (!productsTableExists) {
     console.log("Products Table not exists, creating it");
     await initProductsTable();
+  }
+  if (!messagesTableExists) {
+    console.log("Messages Table not exists, creating it");
+    await initMessagesTable();
   }
 };

@@ -2,6 +2,7 @@ import express from "express";
 import mainRouter from "../routes/index";
 import http from "http";
 import * as socketio from "socket.io";
+import { addMessageTotable } from "../services/database";
 
 const app = express();
 
@@ -14,27 +15,11 @@ const server = new http.Server(app);
 const myWSServer = new socketio.Server(server);
 export default server;
 
-const clients: any = [];
-
 myWSServer.on("connection", (socket) => {
-  console.log("Un cliente se ha conectado!");
-  console.log("ID SOCKET SERVER", socket.id);
-  console.log("ID SOCKET CLIENTE", socket.client.id);
-
-  clients.push(socket.id);
-
   socket.on("message", (data) => {
-    console.log(`El cliente ${socket.client.id} me acaba de mandar un dato`);
+    console.log(`El cliente ${socket.client} me acaba de mandar un dato`);
     console.log(data);
-
-    // // SERVER RESPONDE Al CLIENTE QUE LE MANDO EL MENSJAE
-    // socket.emit('response', data);
-
-    //SERVER ENVIA MENSAJE A TODOS LOS CLIENTES SALVO AL CLIENTE QUE ENVIO EL MENSAJE
-    socket.broadcast.emit("response", data);
-
-    //SERVER LE ENVIA A TODOS LOS CLIENTES
-    // myWSServer.emit('response', data)
+    addMessageTotable(data);
   });
 });
 
