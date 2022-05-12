@@ -1,15 +1,6 @@
 import knex from "knex";
-
-const dbConfig = {
-  client: "mysql",
-  connection: {
-    host: "127.0.0.1",
-    user: "root",
-    port: 3306,
-    password: "",
-    database: "nestordb",
-  },
-};
+import { dbMaria } from "../services/mariadb";
+import { dbSqlite } from "../services/sqlite";
 
 class RelationalDatabase {
   connection: any;
@@ -42,19 +33,14 @@ class RelationalDatabase {
 const productsTableName = "products";
 const messagesTableName = "messages";
 
-export const ProductsModel = new RelationalDatabase(
-  dbConfig,
-  productsTableName
-);
+export const ProductsModel = new RelationalDatabase(dbMaria, productsTableName);
 
 export const MessagesModel = new RelationalDatabase(
-  dbConfig,
+  dbSqlite,
   messagesTableName
 );
 
-// export const MessagesModel = new RelationalDatabase(sqliteConfig, "messages");
-
-const db = knex(dbConfig);
+const db = knex(dbMaria);
 
 const initProductsTable = async () => {
   await db.schema.createTable(productsTableName, async (productsTable) => {
