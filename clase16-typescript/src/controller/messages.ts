@@ -1,9 +1,9 @@
 import { MessagesModel } from "../services/database";
 
 export const getAllMessages = async () => {
-  const products = await MessagesModel.get();
+  const messages = await MessagesModel.get();
 
-  return products;
+  return messages;
 };
 
 export const AddMesage = async (author: string, text: string) => {
