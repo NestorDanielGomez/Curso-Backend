@@ -1,0 +1,100 @@
+****Utilizando Mongo Shell, crear una base de datos llamada ecommerce que contenga dos colecciones: mensajes y productos.
+> use ecommerce
+switched to db ecommerce
+> show collections
+----------------------------------------
+> db.createCollection("mensajes")
+{ "ok" : 1 }
+> db.createCollection("productos")
+{ "ok" : 1 }
+----------------------------------------
+> show collections
+mensajes
+productos
+----------------------------------------
+****Agregar 10 documentos con valores distintos a las colecciones mensajes y productos. El formato de los documentos debe estar en correspondencia con el que venimos utilizando en el entregable con base de datos MariaDB. 
+Definir las claves de los documentos en relación a los campos de las tablas de esa base. En el caso de los productos, poner valores al campo precio entre los 100 y 5000 pesos(eligiendo valores intermedios, ej: 120, 580, 900, 1280, 1700, 2300, 2860, 3350, 4320, 4990). 
+
+const dataMsg = [
+  { author: "Nestor", mensajes: "Mensaje del Alumno", date: ISODate() },
+  { author: "Facundo", mensajes: "Mensaje del Tutor", date: ISODate() },
+  { author: "Cristian", mensajes: "Mensaje del Profesor", date: ISODate() },
+  { author: "Coderhouse", mensajes: "Mensaje", date: ISODate() },
+  { author: "Noelia", mensajes: "Mensaje", date: ISODate() },
+  { author: "Walter", mensajes: "Mensaje", date: ISODate() },
+  { author: "Nicolas", mensajes: "Mensaje", date: ISODate() },
+  { author: "Noelia", mensajes: "Mensaje", date: ISODate() },
+  { author: "Bautista", mensajes: "Mensaje", date: ISODate() },
+  { author: "Leticia", mensajes: "Mensaje", date: ISODate() },
+];
+const dataProductos = [
+  { producto: "Goma", precio: 100, date: ISODate() },
+  { producto: "Birome", precio: 200, date: ISODate() },
+  { producto: "Regla", precio: 300, date: ISODate() },
+  { producto: "Fibras", precio: 500, date: ISODate() },
+  { producto: "Carpeta", precio: 1150, date: ISODate() },
+  { producto: "Cartuchera", precio: 2150, date: ISODate() },
+  { producto: "Block de Hojas", precio: 3000, date: ISODate() },
+  { producto: "Boligoma", precio: 150, date: ISODate() },
+  { producto: "Escuadra", precio: 700, date: ISODate() },
+  { producto: "Transportador", precio: 600, date: ISODate() },
+  { producto: "Mochila", precio: 4990, date: ISODate() },
+];
+----------------------------------------
+
+****Listar todos los documentos en cada colección.
+db.mensajes.insert(dataMsg)
+db.productos.insert(dataProductos)
+
+----------------------------------------
+****Mostrar la cantidad de documentos almacenados en cada una de ellas.
+db.mensajes.estimatedDocumentCount()
+db.productos.estimatedDocumentCount()
+
+----------------------------------------
+Realizar un CRUD sobre la colección de productos:
+**** Agregar un producto más en la colección de productos 
+const nuevoProducto=  { producto: "Taza", precio: 700, date: ISODate() }
+db.productos.insert(nuevoProducto)
+----------------------------------------
+
+Realizar una consulta por nombre de producto específico:
+
+**** Listar los productos con precio menor a 1000 pesos.
+ db.productos.find({precio:{$lt:1000}}).pretty()
+
+**** Listar los productos con precio entre los 1000 a 3000 pesos.
+ db.productos.find({$and:[{precio:{$gt:1000}},{precio:{$lt:3000}}]}).pretty();
+
+**** Listar los productos con precio mayor a 3000 pesos.
+ db.productos.find({precio:{$gt:3000}}).pretty()
+
+
+**** Realizar una consulta que traiga sólo el nombre del tercer producto más barato
+db.productos.find({},{precio:1}).sort({precio:1}).limit(1).skip(2)
+
+----------------------------------------
+
+**** Hacer una actualización sobre todos los productos, agregando el campo stock a todos ellos con un valor de 100.
+db.productos.updateMany({},{$set:{stock:100}})
+ ------------------------------------------
+**** Borrar los productos con precio menor a 1000 pesos 
+db.productos.deleteMany({precio:{$lt:1000}})
+
+ ------------------------------------------
+**** Cambiar el stock a cero de los productos con precios mayores a 4000 pesos
+ db.productos.updateMany({precio:{$gt:4000}},{$set:{stock:0}})
+ ------------------------------------------
+
+ 
+ ****Crear un usuario 'pepe' clave: 'asd456' que sólo pueda leer la base de datos ecommerce. Verificar que pepe no pueda cambiar la información.
+
+ db.createUser({
+  user: "pepe",
+  pwd: "asd456",
+  roles: [{ role: "read", db: "ecommerce" }],
+});
+
+mongod --auth
+mongo -u pepe -p asd456
+------------------------------------
