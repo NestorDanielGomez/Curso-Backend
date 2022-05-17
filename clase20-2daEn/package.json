@@ -1,7 +1,6 @@
 {
   "name": "babel",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "transpile": "babel src --out-dir dist",
@@ -22,5 +21,6 @@
     "dotenv": "^16.0.0",
     "express": "^4.18.0",
     "mongoose": "^6.3.1"
-  }
+  },
+  "description": ""
 }
