@@ -1,4 +1,4 @@
-import { CategoryModel } from '../models/categories';
+import { CategoryModel } from "../models/categories";
 
 export const getAllCategories = async (req, res) => {
   try {
@@ -6,6 +6,7 @@ export const getAllCategories = async (req, res) => {
     const items = await CategoryModel.find();
 
     res.json({
+      title: "Tosos los carros",
       data: items,
     });
   } catch (err) {
@@ -24,7 +25,7 @@ export const getCategoryById = async (req, res) => {
 
     if (!item)
       return res.status(404).json({
-        msgs: 'Category not found!',
+        msgs: "Category not found!",
       });
 
     res.json({
@@ -44,7 +45,7 @@ export const createCategory = async (req, res) => {
 
     if (!name || !description)
       return res.status(400).json({
-        msg: 'Invalid Body',
+        msg: "Invalid Body",
       });
 
     const newCategory = await CategoryModel.create({
@@ -70,7 +71,7 @@ export const updateCategory = async (req, res) => {
 
     if (!name || !description)
       return res.status(400).json({
-        msg: 'Invalid Body',
+        msg: "Invalid Body",
       });
 
     const categoryUpdated = await CategoryModel.findByIdAndUpdate(
@@ -80,7 +81,7 @@ export const updateCategory = async (req, res) => {
     );
 
     res.json({
-      msg: 'Category updated',
+      msg: "Category updated",
       category: categoryUpdated,
     });
   } catch (err) {
@@ -98,7 +99,7 @@ export const deleteCategory = async (req, res) => {
     await CategoryModel.findByIdAndDelete(id);
 
     res.json({
-      msg: 'Category deleted',
+      msg: "Category deleted",
     });
   } catch (err) {
     res.status(500).json({

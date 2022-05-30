@@ -1,6 +1,6 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
-export const categoryCollectionName = 'category';
+export const categoryCollectionName = "category";
 
 const categorySchema = new mongoose.Schema(
   {
