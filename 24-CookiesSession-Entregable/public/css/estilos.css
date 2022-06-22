@@ -4,28 +4,3 @@
 body {
   font-family: "Montserrat", sans-serif;
 }
-h2,
-h2,
-a,
-a:hover,
-a:active,
-a::after {
-  color: #000;
-  text-decoration: none;
-}
-
-/*FOOTER*/
-
-.containerBody {
-  margin-top: 3rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-flow: column nowrap;
-}
-
-.jumbotron {
-  background-color: aquamarine;
-  color: #000000;
-  text-align: center;
-}
