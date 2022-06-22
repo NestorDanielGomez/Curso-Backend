@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row text-center">
+    <div class="col-6 mx-auto mt-5">
+      <h1>LOGIN</h1>
+      <form
+        class="form"
+        action="/login"
+        method="post"
+        role="form"
+        autocomplete="off"
+      >
+        <div class="form-group">
+          <input
+            id="nombre"
+            name="nombre"
+            placeholder="nombre"
+            class="form-control form-control-lg"
+            type="text"
+            required
+          />
+        </div>
+        <div class="mb-3 mt-3">
+          <button type="submit" class="btn btn-outline-primary">LOGIN</button>
+          <button
+            onclick="location.href = '/register'"
+            class="btn btn-outline-primary"
+          >REGISTRARSE</button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</div>
