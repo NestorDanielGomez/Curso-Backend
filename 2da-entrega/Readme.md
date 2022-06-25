@@ -1,4 +1,0 @@
-GENERAR UN ARCHIVOS .ENV CON LAS SIGUIENTES VARIABLES DE ENTORNO
-
-MONGO_ATLAS_SRV=mongodb+srv://NDGOMEZ:oqFag5OAHpHAo6nP@cluster0.52niv.mongodb.net/?retryWrites=true&w=majority
-PORT=8080
